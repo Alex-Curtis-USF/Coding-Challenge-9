@@ -54,3 +54,27 @@ class Section {
     }
 }
 
+// Create Section class to manage books and availability
+
+class Patron {
+    constructor(name) {
+        this.name = name;
+        this.borrowedBooks = [];
+    }
+
+    borrowBook(book) {
+        if (book.isAvailable) {
+            book.isAvailable = false;
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} has borrowed "${book.title}".`);
+        } else {
+            console.log(`Sorry, "${book.title}" is not available for borrowing.`);
+        }
+    }
+
+    returnBook(book) {
+        book.isAvailable = true;
+        this.borrowedBooks = this.borrowedBooks.filter(b => b !== book);
+        console.log(`${this.name} has returned "${book.title}".`);
+    }
+}
