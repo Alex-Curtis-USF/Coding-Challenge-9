@@ -20,3 +20,37 @@ class Book {
         this._isAvailable = status;
     }
 }
+
+// Create a Section Class
+
+class Section {
+    constructor(name) {
+        this.name = name;
+        this.books = [];
+    }
+
+    addBook(book) {
+        if (this.isValidBook(book)) {
+            this.books.push(book);
+        } else {
+            console.log("Error: Invalid book object. Cannot add to the section.");
+        }
+    }
+
+    isValidBook(book) {
+        return book 
+            && typeof book.title === 'string'
+            && typeof book.author === 'string'
+            && typeof book.ISBN === 'string'
+            && typeof book.isAvailable === 'boolean';
+    }
+
+    getAvailableBooks() {
+        return this.books.filter(book => book.isAvailable).length;
+    }
+
+    listBooks() {
+        return this.books.map(book => `${book.title} - ${book.isAvailable ? 'Available' : 'Not Available'}`).join('\n');
+    }
+}
+
