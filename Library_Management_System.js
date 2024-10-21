@@ -78,3 +78,28 @@ class Patron {
         console.log(`${this.name} has returned "${book.title}".`);
     }
 }
+
+// Create a VIPPatron Class that Inherits from Patron
+
+class VIPPatron extends Patron {
+    constructor(name) {
+        super(name);
+        this.priority = true;
+    }
+
+    borrowBook(book) {
+        if (book.isAvailable) {
+            return super.borrowBook(book);
+        } else {
+            console.log(`VIP ${this.name} is attempting to borrow an unavailable book: "${book.title}"`);
+            // Simulate priority borrowing
+            book.isAvailable = true;
+            const borrowed = super.borrowBook(book);
+            if (borrowed) {
+                console.log(`VIP priority allowed ${this.name} to borrow "${book.title}".`);
+            }
+            return borrowed;
+        }
+    }
+}
+
