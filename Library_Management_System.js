@@ -52,6 +52,9 @@ class Section {
     listBooks() {
         return this.books.map(book => `${book.title} - ${book.isAvailable ? 'Available' : 'Not Available'}`).join('\n');
     }
+    calculateTotalBooksAvailable() {
+        return this.books.filter(book => book.isAvailable).length;
+    }
 }
 
 // Create Section class to manage books and availability
@@ -102,4 +105,7 @@ class VIPPatron extends Patron {
         }
     }
 }
+
+// Handle Books Borrowing and Returning (Task 5)
+// Added to Section Class
 
